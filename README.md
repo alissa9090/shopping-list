@@ -1,5 +1,4 @@
-# bank-provider
-Pilot project
+# shopping list
 
 # start project
 
