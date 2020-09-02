@@ -26,9 +26,12 @@ const ButtonAppBar: React.FC = () => {
           <Typography variant="h6" className={classes.title}>
             Shopping list
           </Typography>
-          <IconButton aria-label="share" color="inherit">
-            <ShareIcon />
-          </IconButton>
+          { navigator.share && (
+              <IconButton aria-label="share" color="inherit">
+                <ShareIcon />
+              </IconButton>
+            )
+          }
         </Toolbar>
       </AppBar>
     </div>
