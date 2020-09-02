@@ -1,5 +1,6 @@
-# bank-provider
-Pilot project for 360T
+# Shopping list
+
+[deployed app](https://alissa9090.github.io/shopping-list/)
 
 # start project
 
