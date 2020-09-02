@@ -34713,6 +34713,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _typeof;
 
 function _typeof(obj) {
+  "@babel/helpers - typeof";
+
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
     exports.default = _typeof = function _typeof(obj) {
       return typeof obj;
@@ -42237,7 +42239,24 @@ function defaultUnit(options) {
 
 var _default = defaultUnit;
 exports.default = _default;
-},{"jss":"node_modules/jss/dist/jss.esm.js"}],"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js":[function(require,module,exports) {
+},{"jss":"node_modules/jss/dist/jss.esm.js"}],"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _arrayLikeToArray;
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+},{}],"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42245,16 +42264,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _arrayWithoutHoles;
 
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
+var _arrayLikeToArray = _interopRequireDefault(require("./arrayLikeToArray"));
 
-    return arr2;
-  }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return (0, _arrayLikeToArray.default)(arr);
 }
-},{}],"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/iterableToArray.js":[function(require,module,exports) {
+},{"./arrayLikeToArray":"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js"}],"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/iterableToArray.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42263,9 +42280,29 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _iterableToArray;
 
 function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
 }
-},{}],"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js":[function(require,module,exports) {
+},{}],"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _unsupportedIterableToArray;
+
+var _arrayLikeToArray = _interopRequireDefault(require("./arrayLikeToArray"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return (0, _arrayLikeToArray.default)(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return (0, _arrayLikeToArray.default)(o, minLen);
+}
+},{"./arrayLikeToArray":"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js"}],"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42274,7 +42311,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _nonIterableSpread;
 
 function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 },{}],"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/toConsumableArray.js":[function(require,module,exports) {
 "use strict";
@@ -42288,14 +42325,16 @@ var _arrayWithoutHoles = _interopRequireDefault(require("./arrayWithoutHoles"));
 
 var _iterableToArray = _interopRequireDefault(require("./iterableToArray"));
 
+var _unsupportedIterableToArray = _interopRequireDefault(require("./unsupportedIterableToArray"));
+
 var _nonIterableSpread = _interopRequireDefault(require("./nonIterableSpread"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) {
-  return (0, _arrayWithoutHoles.default)(arr) || (0, _iterableToArray.default)(arr) || (0, _nonIterableSpread.default)();
+  return (0, _arrayWithoutHoles.default)(arr) || (0, _iterableToArray.default)(arr) || (0, _unsupportedIterableToArray.default)(arr) || (0, _nonIterableSpread.default)();
 }
-},{"./arrayWithoutHoles":"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js","./iterableToArray":"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/iterableToArray.js","./nonIterableSpread":"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js"}],"node_modules/css-vendor/dist/css-vendor.esm.js":[function(require,module,exports) {
+},{"./arrayWithoutHoles":"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js","./iterableToArray":"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/iterableToArray.js","./unsupportedIterableToArray":"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js","./nonIterableSpread":"node_modules/css-vendor/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js"}],"node_modules/css-vendor/dist/css-vendor.esm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43482,6 +43521,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _typeof;
 
 function _typeof(obj) {
+  "@babel/helpers - typeof";
+
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
     exports.default = _typeof = function _typeof(obj) {
       return typeof obj;
@@ -45612,7 +45653,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _iterableToArray;
 
 function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
 }
 },{}],"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js":[function(require,module,exports) {
 "use strict";
@@ -49684,16 +49725,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _arrayWithoutHoles;
 
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
+var _arrayLikeToArray = _interopRequireDefault(require("./arrayLikeToArray"));
 
-    return arr2;
-  }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return (0, _arrayLikeToArray.default)(arr);
 }
-},{}],"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js":[function(require,module,exports) {
+},{"./arrayLikeToArray":"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js"}],"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49702,7 +49741,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _nonIterableSpread;
 
 function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 },{}],"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/toConsumableArray.js":[function(require,module,exports) {
 "use strict";
@@ -49716,14 +49755,16 @@ var _arrayWithoutHoles = _interopRequireDefault(require("./arrayWithoutHoles"));
 
 var _iterableToArray = _interopRequireDefault(require("./iterableToArray"));
 
+var _unsupportedIterableToArray = _interopRequireDefault(require("./unsupportedIterableToArray"));
+
 var _nonIterableSpread = _interopRequireDefault(require("./nonIterableSpread"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) {
-  return (0, _arrayWithoutHoles.default)(arr) || (0, _iterableToArray.default)(arr) || (0, _nonIterableSpread.default)();
+  return (0, _arrayWithoutHoles.default)(arr) || (0, _iterableToArray.default)(arr) || (0, _unsupportedIterableToArray.default)(arr) || (0, _nonIterableSpread.default)();
 }
-},{"./arrayWithoutHoles":"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js","./iterableToArray":"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/iterableToArray.js","./nonIterableSpread":"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js"}],"node_modules/@material-ui/core/esm/ButtonBase/Ripple.js":[function(require,module,exports) {
+},{"./arrayWithoutHoles":"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js","./iterableToArray":"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/iterableToArray.js","./unsupportedIterableToArray":"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js","./nonIterableSpread":"node_modules/@material-ui/core/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js"}],"node_modules/@material-ui/core/esm/ButtonBase/Ripple.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55096,6 +55137,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _typeof;
 
 function _typeof(obj) {
+  "@babel/helpers - typeof";
+
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
     exports.default = _typeof = function _typeof(obj) {
       return typeof obj;
@@ -62202,7 +62245,7 @@ var ButtonAppBar = function ButtonAppBar() {
   }, react_1.default.createElement(Toolbar_1.default, null, react_1.default.createElement(Typography_1.default, {
     variant: "h6",
     className: classes.title
-  }, "Shopping list"), react_1.default.createElement(IconButton_1.default, {
+  }, "Shopping list"), navigator.share && react_1.default.createElement(IconButton_1.default, {
     "aria-label": "share",
     color: "inherit"
   }, react_1.default.createElement(Share_1.default, null)))));
@@ -62370,7 +62413,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52092" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65205" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
