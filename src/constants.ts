@@ -32,7 +32,13 @@ const shops = [
   {
     id: 'aldi',
     title: 'Aldi',
-    items: []
+    items: [
+      {
+        id: '12345',
+        title: 'Сметана',
+        completed: false
+      }
+    ]
   },
   {
     id: 'dm',

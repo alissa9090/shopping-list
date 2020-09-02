@@ -1,3 +1,5 @@
+import {ShopJson, ItemJson} from './constants';
+
 export function	uuid(): string {
 	/*jshint bitwise:false */
 	let i: number, random: number;
@@ -13,4 +15,25 @@ export function	uuid(): string {
 	}
 
 	return uuid;
+}
+
+function formatItems (items: Array<ItemJson>) {
+	const str = items.reduce((result: string, item: ItemJson) => {
+		return result +
+`	- ${item.title}
+`;
+	}, '')
+	return str;
+}
+
+export function formatShoppingList (shops: Array<ShopJson>): string {
+	const str = shops.reduce((result: string, shop: ShopJson) => {
+		if(shop.items.length <= 0) {
+			return result;
+		}
+		return result +
+`${shop.title}:
+${formatItems(shop.items)}`;
+	}, '')
+	return str;
 }
