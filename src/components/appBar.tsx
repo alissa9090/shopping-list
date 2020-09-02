@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRootData } from '../stores/hook';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,6 +19,19 @@ const useStyles = makeStyles((theme) => ({
 
 const ButtonAppBar: React.FC = () => {
   const classes = useStyles();
+
+  const shoppingList = useRootData(store => store.toJS());
+
+  const share = () => {
+    if (navigator.share) {
+      navigator.share({
+        text: shoppingList.toString()
+      }).then(() => {
+        console.log('Thanks for sharing!');
+      })
+      .catch(console.error);
+    }
+  }
   
   return (
     <div className={classes.root}>
@@ -27,7 +41,7 @@ const ButtonAppBar: React.FC = () => {
             Shopping list
           </Typography>
           { navigator.share && (
-              <IconButton aria-label="share" color="inherit">
+              <IconButton aria-label="share" color="inherit" onClick={share}>
                 <ShareIcon />
               </IconButton>
             )
