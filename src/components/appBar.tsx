@@ -21,14 +21,12 @@ const useStyles = makeStyles((theme) => ({
 const ButtonAppBar: React.FC = () => {
   const classes = useStyles();
 
-  const shoppingList = useRootData(store => formatShoppingList(store.toJS()));
+  const store = useRootData(store => store);
 
   const share = () => {
     if (navigator.share) {
       navigator.share({
-        text: shoppingList
-      }).then(() => {
-        console.log('Thanks for sharing!');
+        text: formatShoppingList(store.toJS())
       })
       .catch(console.error);
     }
