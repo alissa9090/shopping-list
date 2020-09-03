@@ -51,8 +51,8 @@ export default class ShopModel {
 		};
 	}
 
-	static fromJS(object: ShopJson) {
-		const items = object.items.map(item => ItemModel.fromJS(item));
+	static createFromJS(object: ShopJson) {
+		const items = object.items.map(item => ItemModel.createFromJS(item));
 		return new ShopModel(object.id, object.title, items);
 	}
 }

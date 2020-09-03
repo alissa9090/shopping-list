@@ -1,9 +1,36 @@
-import {observable, computed, reaction, action} from 'mobx';
+import {observable, autorun} from 'mobx';
 import ShopModel from '../models/ShopModel';
 import {ShopJson} from '../constants';
+import localforage from 'localforage';
+
+const INDEX_DB_KEY = 'shoppingListApp';
 
 export default class ShopsStore {
 	@observable shops = [];
+	@observable firstRun = true;
+
+	constructor() {
+    // will run on change
+		autorun(async () => {
+			if (this.firstRun) {
+				await localforage.setDriver([
+					localforage.INDEXEDDB
+				]);
+				const state = await localforage.getItem(INDEX_DB_KEY);
+				this.fromJS(state);
+				console.log('get state from storage');
+			}
+			
+			this.firstRun = false;
+		});
+
+		autorun(() => {
+			if (!this.firstRun) {
+				localforage.setItem(INDEX_DB_KEY, this.toJS());
+				console.log('set state to storage');
+			}
+		})
+  }
 	
 	getShopById(shopId: string) {
 		return this.shops.find(shop => shop.id === shopId);
@@ -21,13 +48,11 @@ export default class ShopsStore {
 		}
 	}
 
-	toJS() {
+	toJS(): Array<ShopJson> {
 		return this.shops.map(shop => shop.toJS());
 	}
 
-	static fromJS(shops: Array<ShopJson>) {
-		const shopsStore = new ShopsStore();
-		shopsStore.shops = shops.map(shop => ShopModel.fromJS(shop));
-		return shopsStore;
+	fromJS(shops: any) {
+		this.shops = shops.map((shop: ShopJson) => ShopModel.createFromJS(shop));
 	}
 }

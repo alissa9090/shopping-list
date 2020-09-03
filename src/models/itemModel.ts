@@ -34,7 +34,7 @@ export default class ItemModel {
 		return item;
 	}
 
-	static fromJS(object: ItemJson) {
+	static createFromJS(object: ItemJson) {
 		return new ItemModel(object.id, object.title, object.completed);
 	}
 }
