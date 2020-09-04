@@ -17,8 +17,10 @@ export default class ShopsStore {
 					localforage.INDEXEDDB
 				]);
 				const state = await localforage.getItem(INDEX_DB_KEY);
-				this.fromJS(state);
-				console.log('get state from storage');
+				if(Array.isArray(state)) {
+					this.fromJS(state);
+					console.log('get state from storage');
+				}
 			}
 			
 			this.firstRun = false;
