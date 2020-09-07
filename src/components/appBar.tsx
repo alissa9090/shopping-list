@@ -8,15 +8,18 @@ import IconButton from '@material-ui/core/IconButton';
 import ShareIcon from '@material-ui/icons/Share';
 import {formatShoppingList} from '../utils';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  title: {
-    marginLeft: '20px',
-    flexGrow: 1,
-  },
-}));
+const useStyles = makeStyles((theme) => {
+  console.log(theme);
+  return {
+    root: {
+      flexGrow: 1
+    },
+    title: {
+      marginLeft: '20px',
+      flexGrow: 1,
+    }
+  };
+});
 
 const ButtonAppBar: React.FC = () => {
   const classes = useStyles();

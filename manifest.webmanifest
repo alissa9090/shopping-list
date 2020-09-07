@@ -1,0 +1,33 @@
+{
+  "name": "Shopping list",
+  "short_name": "Shopping list",
+  "icons": [{
+    "src": "/assets/images/shopping-list-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }, {
+      "src": "/assets/images/shopping-list-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }, {
+      "src": "/assets/images/shopping-list-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    }, {
+      "src": "/assets/images/shopping-list-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "/assets/images/shopping-list-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }, {
+      "src": "/assets/images/shopping-list-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#9c0d70",
+  "theme_color": "#709c0d"
+}
