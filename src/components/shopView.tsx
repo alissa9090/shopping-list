@@ -15,7 +15,8 @@ const useStyles = (highlightSummary: boolean) => makeStyles((theme) => ({
     marginBottom: 'auto'
   },
   summary: {
-    backgroundColor: highlightSummary ? '#709c0d' : 'default'
+    backgroundColor: highlightSummary ? '#9c0d70' : 'default', //blue
+    color: highlightSummary ? '#ffffff' : 'default'
   }
 }));
 
