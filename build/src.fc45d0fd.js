@@ -587,4 +587,4 @@ function r(){return module.exports=r=Object.assign||function(r){for(var t=1;t<ar
 },{"react":"HdMw","./stores/context":"a2bm","./components/shops":"dceT","./components/appBar":"Lfh6","../assets/css/App.less":"biJ2","./components/base/Palette":"2gA6"}],"OGgv":[function(require,module,exports) {
 "use strict";var e=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var r=e(require("react")),t=e(require("react-dom")),o=e(require("./App"));require("../assets/css/index.css"),t.default.render(r.default.createElement(o.default,null),document.getElementById("root")),"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("service-worker.js").then(function(e){console.log("Service worker registered.",e)},console.log)});
 },{"react":"HdMw","react-dom":"X9zx","./App":"Ru8j","../assets/css/index.css":"biJ2","/Users/alisa/Projects/shopping-list/service-worker.js":[["service-worker.js","AaGI"],"service-worker.js.map","AaGI"]}]},{},["OGgv"], null)
-//# sourceMappingURL=src.39db3cdc.js.map
+//# sourceMappingURL=src.fc45d0fd.js.map

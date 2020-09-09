@@ -1,4 +1,4 @@
-const CACHE_NAME = 'test0.2';
+const CACHE_NAME = 'test0.3';
 const FILES_TO_CACHE = [
   './'
 ];
@@ -41,13 +41,16 @@ self.addEventListener('fetch', (evt) => {
     return;
   }
   evt.respondWith(
-      fetch(evt.request)
-          .catch(() => {
-            return caches.open(CACHE_NAME)
-                .then((cache) => {
-                  return cache.match('offline.html');
-                });
-          })
+    caches.match(evt.request).then( response => {
+      return response || fetch(evt.request);
+    })
+      // fetch(evt.request)
+      //     .catch(() => {
+      //       return caches.open(CACHE_NAME)
+      //           .then((cache) => {
+      //             return cache.match('offline.html');
+      //           });
+      //     })
   );
 });
 
