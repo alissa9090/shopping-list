@@ -1,8 +1,6 @@
 const CACHE_NAME = 'test0.2';
 const FILES_TO_CACHE = [
-  '/index.html',
-  './',
-  '/build/index.html'
+  './'
 ];
 
 self.addEventListener('install', (evt) => {

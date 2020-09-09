@@ -1,1 +1,0 @@
-{"version":3,"sources":["assets/css/assets/css/App.less","index.css"],"names":[],"mappings":"AAAA,mBACE,YCDF,KACE,QAAS,CACT,SAAU,CACV,sBACF","file":"src.f7a4b160.css","sourceRoot":"..","sourcesContent":[".app_sector + .shops {\n  margin: 20px;\n}\n","body {\n  margin: 0;\n  padding: 0;\n  font-family: sans-serif;\n}\n"]}
