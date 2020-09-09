@@ -19,7 +19,7 @@ export default class ShopsStore {
 				const state = await localforage.getItem(INDEX_DB_KEY);
 				if(Array.isArray(state)) {
 					this.fromJS(state);
-					console.log('get state from storage');
+					//console.log('get state from storage');
 				}
 			}
 			
@@ -29,7 +29,7 @@ export default class ShopsStore {
 		autorun(() => {
 			if (!this.firstRun) {
 				localforage.setItem(INDEX_DB_KEY, this.toJS());
-				console.log('set state to storage');
+				//console.log('set state to storage');
 			}
 		})
   }
