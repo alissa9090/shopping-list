@@ -2,7 +2,6 @@ const CACHE_NAME = 'shopping-list-v0.1';
 const FILES_TO_CACHE = [
   './',
   './manifest.webmanifest',
-  './favicon.d42470cd.ico',
   './shopping-list-128x128.53711125.png',
   './shopping-list-144x144.8c812167.png',
   './shopping-list-152x152.9ce296dc.png',
