@@ -1,3 +1,4 @@
 .cache
 README 2.md
 dist
+node_modules
