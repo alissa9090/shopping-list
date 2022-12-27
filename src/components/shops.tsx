@@ -1,27 +1,14 @@
-import React from 'react'
-import { useRootData } from '../stores/hook';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { Box, TextField, IconButton } from '@mui/material';
+import { Add } from '@mui/icons-material';
+import { observer } from 'mobx-react-lite';
 import ShopView from './shopView';
-import TextField from '@material-ui/core/TextField';
-import AddIcon from '@material-ui/icons/Add';
-import IconButton from '@material-ui/core/IconButton';
+import { useRootData } from '../stores/hook';
 
-const useStyles = makeStyles((theme) => ({
-  newShopArea: {
-    marginLeft: '5px',
-    marginTop: '15px'
-  },
-  newShopButton: {
-    paddingTop: '15px'
-  }
-}));
-
-const Shops: React.FC = () => {
-  const classes = useStyles();
-
-  const {shopIds, addShop} = useRootData(store => ({
-    shopIds: store.shops.map(shop => shop.id),
-    addShop: store.addShop
+const Shops: React.FC = observer(() => {
+  const { shopIds, addShop } = useRootData((store) => ({
+    shopIds: store.shops.map((shop) => shop.id),
+    addShop: store.addShop,
   }));
 
   const [title, setTitle] = React.useState('');
@@ -34,26 +21,44 @@ const Shops: React.FC = () => {
       addShop(title);
       setTitle('');
     }
-  }
+  };
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
-    if(event.key === 'Enter'){
+    if (event.key === 'Enter') {
       addNewShop();
     }
-  }
+  };
 
   return (
     <div>
-      {shopIds.map(shopId => <ShopView key={shopId} shopId={shopId} />)}
-      <div className={classes.newShopArea}>
-        <TextField label="Add shop" value={title} onChange={handleChange} onKeyPress={handleKeyPress} />
-        <IconButton className={classes.newShopButton} color="primary" aria-label="add item" onClick={addNewShop}>
-          <AddIcon />
+      {shopIds.map((shopId) => (
+        <ShopView key={shopId} shopId={shopId} />
+      ))}
+      <Box
+        cx={{
+          marginLeft: '5px',
+          marginTop: '15px',
+        }}
+      >
+        <TextField
+          label="Add shop"
+          value={title}
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
+        />
+        <IconButton
+          cx={{
+            paddingTop: '15px',
+          }}
+          color="primary"
+          aria-label="add item"
+          onClick={addNewShop}
+        >
+          <Add />
         </IconButton>
-      </div>
+      </Box>
     </div>
   );
-}
-
+});
 
 export default Shops;

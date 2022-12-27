@@ -1,7 +1,7 @@
 import React from 'react';
 import { useObserver } from 'mobx-react-lite';
-import { storeContext } from "./context";
-import ShopsStore from "./shopsStore";
+import { storeContext } from './context';
+import ShopsStore from './shopsStore';
 
 export const useStoreData = <Selection, ContextData, Store>(
   context: React.Context<ContextData>,
@@ -13,12 +13,8 @@ export const useStoreData = <Selection, ContextData, Store>(
     throw new Error();
   }
   const store = storeSelector(value);
-  return useObserver(() => {
-    return dataSelector(store);
-  });
+  return useObserver(() => dataSelector(store));
 };
 
-export const useRootData = <Selection>(
-  dataSelector: (store: ShopsStore) => Selection
-) =>
-  useStoreData(storeContext, contextData => contextData!, dataSelector);
+export const useRootData = <Selection>(dataSelector: (store: ShopsStore) => Selection) =>
+  useStoreData(storeContext, (contextData) => contextData!, dataSelector);

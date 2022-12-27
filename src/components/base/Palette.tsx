@@ -1,26 +1,21 @@
-import React from 'react';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { PropsWithChildren } from 'react';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
-      main: '#709c0d'//green
+      main: '#709c0d', // green
     },
     secondary: {
       // This is green.A700 as hex.
-      main: '#0d709c', //purple
+      main: '#0d709c', // purple
     },
   },
 });
 
-const Palette: React.FC = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      {children}
-    </ThemeProvider>
-  );
-}
+const Palette: React.FC<PropsWithChildren> = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
 
 export default Palette;

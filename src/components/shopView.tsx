@@ -1,67 +1,60 @@
-import React from 'react'
+import React from 'react';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
+import { ExpandMore } from '@mui/icons-material';
+import { observer } from 'mobx-react-lite';
 import { useRootData } from '../stores/hook';
-import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Items from './items';
 import Menu from './base/Menu';
 
-const useStyles = (highlightSummary: boolean) => makeStyles((theme) => ({
-  headingContainer: {
-    marginTop: 'auto',
-    marginBottom: 'auto'
-  },
-  summary: {
-    backgroundColor: highlightSummary ? '#9c0d70' : 'default', //blue
-    color: highlightSummary ? '#ffffff' : 'default'
-  }
-}));
-
-const ShopView: React.FC<{ shopId: string }> = ({ shopId }) => {
-  const {id, title, hasItems, deleteAllCompletedItems, deleteShop} = useRootData(store => {
+const ShopView: React.FC<{ shopId: string }> = observer(({ shopId }) => {
+  const { id, title, hasItems, deleteAllCompletedItems, deleteShop } = useRootData((store) => {
     const shop = store.getShopById(shopId);
     return {
       id: shop.id,
       title: shop.title,
       hasItems: shop.items.length > 0,
       deleteAllCompletedItems: shop.deleteAllCompletedItems,
-      deleteShop: () => store.deleteShop(shop.id)
-    }
+      deleteShop: () => store.deleteShop(shop.id),
+    };
   });
-
-  const classes = useStyles(hasItems)();
 
   const menuItems = [
     {
       title: 'Delete Shop',
-      action: deleteShop
+      action: deleteShop,
     },
     {
       title: 'Delete completed items',
-      action: deleteAllCompletedItems
-    }
+      action: deleteAllCompletedItems,
+    },
   ];
 
   return (
-    <Accordion key={id}>
+    <Accordion>
       <AccordionSummary
-        className={classes.summary}
-        expandIcon={<ExpandMoreIcon />}
+        cx={{
+          backgroundColor: hasItems ? '#9c0d70' : 'default', // blue
+          color: hasItems ? '#ffffff' : 'default',
+        }}
+        expandIcon={<ExpandMore />}
         aria-controls="panel1a-content"
-        id="panel1a-header">
+        id="panel1a-header"
+      >
         <Menu items={menuItems} />
-        <div className={classes.headingContainer}>
+        <Box
+          cx={{
+            marginTop: 'auto',
+            marginBottom: 'auto',
+          }}
+        >
           <Typography>{title}</Typography>
-        </div>
+        </Box>
       </AccordionSummary>
       <AccordionDetails>
         <Items shopId={id} />
       </AccordionDetails>
     </Accordion>
   );
-}
+});
 
 export default ShopView;

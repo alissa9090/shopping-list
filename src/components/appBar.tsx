@@ -1,55 +1,50 @@
 import React from 'react';
+
+import { observer } from 'mobx-react-lite';
+import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
+import { Share } from '@mui/icons-material';
 import { useRootData } from '../stores/hook';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import ShareIcon from '@material-ui/icons/Share';
-import {formatShoppingList} from '../utils';
+import { formatShoppingList } from '../utils';
 
-const useStyles = makeStyles((theme) => (
-  {
-    root: {
-      flexGrow: 1
-    },
-    title: {
-      marginLeft: '20px',
-      flexGrow: 1,
-    }
-  }));
-
-const ButtonAppBar: React.FC = () => {
-  const classes = useStyles();
-
-  const store = useRootData(store => store);
+const ButtonAppBar: React.FC = observer(() => {
+  const store = useRootData((s) => s);
 
   const share = () => {
     if (navigator.share) {
-      navigator.share({
-        text: formatShoppingList(store.toJS())
-      })
-      .catch(console.error);
+      navigator
+        .share({
+          text: formatShoppingList(store.toJS()),
+        })
+        .catch(console.error);
     }
-  }
-  
+  };
+
   return (
-    <div className={classes.root}>
+    <Box
+      cx={{
+        flexGrow: 1,
+      }}
+    >
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography
+            variant="h6"
+            cx={{
+              marginLeft: '20px',
+              flexGrow: 1,
+            }}
+          >
             Shopping list
           </Typography>
-          { navigator.share && (
-              <IconButton aria-label="share" color="inherit" onClick={share}>
-                <ShareIcon />
-              </IconButton>
-            )
-          }
+          {navigator.share && (
+            <IconButton aria-label="share" color="inherit" onClick={share}>
+              <Share />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
-    </div>
+    </Box>
   );
-}
+});
 
 export default ButtonAppBar;

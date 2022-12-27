@@ -1,15 +1,13 @@
+import { Menu as MenuIcon } from '@mui/icons-material';
+import { IconButton, Menu, MenuItem } from '@mui/material';
 import React from 'react';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
-interface MenuItem {
+interface Item {
   title: string;
   action: Function;
-};
+}
 
-const SimpleMenu: React.FC<{ items: Array<MenuItem> }> = ({ items }) => {
+const SimpleMenu: React.FC<{ items: Array<Item> }> = ({ items }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const openMenu = (event: React.MouseEvent) => {
@@ -22,10 +20,10 @@ const SimpleMenu: React.FC<{ items: Array<MenuItem> }> = ({ items }) => {
     event.stopPropagation();
   };
 
-  const menuItemClickHandler = (item: MenuItem) => (event: React.MouseEvent) => {
+  const menuItemClickHandler = (item: Item) => (event: React.MouseEvent) => {
     item.action();
     closeMenu(event);
-  }
+  };
 
   return (
     <div>
@@ -43,18 +41,20 @@ const SimpleMenu: React.FC<{ items: Array<MenuItem> }> = ({ items }) => {
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
-        onClose={closeMenu}>
-        {items.map(item => (
+        onClose={closeMenu}
+      >
+        {items.map((item) => (
           <MenuItem
             key={item.title}
             onFocus={(event) => event.stopPropagation()}
-            onClick={menuItemClickHandler(item)}>
-              {item.title}
+            onClick={menuItemClickHandler(item)}
+          >
+            {item.title}
           </MenuItem>
         ))}
       </Menu>
     </div>
   );
-}
+};
 
 export default SimpleMenu;
